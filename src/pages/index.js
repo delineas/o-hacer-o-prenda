@@ -1,13 +1,15 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { Inter } from '@next/font/google'
-import styles from '../styles/Home.module.css'
+import CreateForm from '../components/create-form'
 
 const inter = Inter({ subsets: ['latin'] })
 
 function Index() {
   return (
     <>
+      <Head>
+        <title>O Hacer O Prenda!</title>
+      </Head>
       <header>
         <h1>¡O hacer O prenda!</h1>
         <h2>
@@ -16,17 +18,7 @@ function Index() {
         <br />
       </header>
       <main>
-        <section>
-          <form>
-            <label for="topic">Tema de la lista</label>
-            <input type="text" id="topic" name="topic" size="28" />
-
-            <br />
-            <button type="submit" id="show">
-              ¡Genera!
-            </button>
-          </form>
-        </section>
+        <CreateForm></CreateForm>
       </main>
     </>
   );
