@@ -1,34 +1,46 @@
 import { useState } from "react";
+import getPostContent from "../lib/dummyjson";
 
 export default function () {
 
   const [content, setContent] = useState('');
+  const [isLoading, setIsLoading] = useState(false)
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
+    setIsLoading(true);
 
-    fetch('https://dummyjson.com/posts/1?key=API_KEY_MOLACANTIDAD')
+    fetch("/api/dummyjson-post")
       .then(response => response.json())
-      .then(data => setContent(data.body))
+      .then(data => {
+        setContent(data.content)
+      })
+
+    setContent(content)
+    setIsLoading(false);
   }
 
   return (
     <form>
-      <label for="topic">Tema de la lista</label>
+      <label htmlFor="topic">Tema de la lista</label>
       <input type="text" id="topic" name="topic" size="28" />
 
       <br />
-      {content == '' && (
-        <button type="submit" id="show" onClick={handleSubmit}>
-          ¡Genera!
+      {content == "" && (
+        <button type="submit" id="show" onClick={handleSubmit} disabled={isLoading}>
+          {isLoading ? 'Esperando...' : '¡Genera!'}
         </button>
       )}
 
       {content != "" && (
         <>
-          <textarea value={content} rows="20"></textarea>
-          <button type="submit">Repetir</button>
-          <button type="submit">Empezar</button>
+          <textarea defaultValue={content} rows="10"></textarea>
+          <button type="submit" onClick={handleSubmit}>
+            Repetir
+          </button>{" "}
+          <button type="submit" onClick={() => setContent("")}>
+            Empezar
+          </button>
         </>
       )}
     </form>
