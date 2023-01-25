@@ -1,6 +1,10 @@
 import getPostContent from "../../lib/dummyjson";
 
 export default async function handler(req, res) {
-  const content = await getPostContent(5);
-  res.status(200).json({ content })
+  try {
+    const content = await getPostContent(1);
+    res.status(200).json({ content });
+  } catch (error) {
+    res.status(error.code).json({ error: error.toString() });
+  }
 }
