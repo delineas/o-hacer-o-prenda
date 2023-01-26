@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { Inter } from '@next/font/google'
 import CreateForm from '../components/create-form'
+import LoginButton from '../components/login-button';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,6 +19,7 @@ function Index() {
         <br />
       </header>
       <main>
+        <LoginButton></LoginButton>
         <CreateForm></CreateForm>
       </main>
     </>
