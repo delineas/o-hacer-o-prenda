@@ -1,5 +1,6 @@
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { pb } from "../../../lib/pocketbase";
 
 export const authOptions = {
   providers: [
@@ -10,12 +11,17 @@ export const authOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        const user = { id: "1", name: "J Smith", email: "jsmith@example.com" };
-        if (user) {
-          return user;
-        } else {
+
+        try {
+          const authData = await pb.admins.authWithPassword(req.body.email, req.body.password);
+          return {
+            email: authData.admin.email
+          }
+        }
+        catch(error) {
           return null;
         }
+
       },
     }),
   ],
