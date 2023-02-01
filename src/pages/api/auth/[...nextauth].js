@@ -26,6 +26,17 @@ export const authOptions = {
     }),
   ],
   secret: process.env.JWT_SECRET,
+  callbacks: {
+    async jwt({token}) {
+      if(pb.authStore?.token) {
+        token.accessToken = pb.authStore.token;
+      }
+      if(pb.authStore.model) {
+        token.user = pb.authStore.model;
+      }
+      return token;
+    }
+  }
 };
 
 export default NextAuth(authOptions)

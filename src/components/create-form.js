@@ -71,12 +71,34 @@ export default function () {
     //getOpenAIContent(setContent, setIsLoading, topic);
   }
 
+  async function handleSave(event) {
+    event.preventDefault();
+    const response = await fetch("/api/tasks/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        topic,
+        content,
+      }),
+    });
+    if (!response.ok) {
+      alert(response.statusText);
+    }
+    const data = await response.json();
+    alert("Tarea añadida con éxito");
+    handleRestart();
+    return data;
+  }
+
   return (
     <form>
       <label htmlFor="topic">Tema de la lista</label>
       <input
         type="text"
         name="topic"
+        value={topic}
         onChange={(e) => setTopic(event.target.value)}
       />
 
@@ -100,6 +122,11 @@ export default function () {
           <SubmitButton onClick={handleRestart} isLoading={isLoading}>
             Empezar
           </SubmitButton>
+          <aside>
+            <SubmitButton onClick={handleSave} isLoading={isLoading}>
+              Guardar
+            </SubmitButton>
+          </aside>
         </>
       )}
     </form>

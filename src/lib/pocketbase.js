@@ -12,3 +12,13 @@ export async function getTask(id) {
   const record = await pb.collection("tasks").getOne(id);
   return record;
 }
+
+export async function createTask({ topic, content }) {
+  const data = {
+    title: topic,
+    body: content,
+  };
+
+  const record = await pb.collection("tasks").create(data);
+  return record;
+}
