@@ -22,3 +22,7 @@ export async function createTask({ topic, content }) {
   const record = await pb.collection("tasks").create(data);
   return record;
 }
+
+export async function deleteTask(id) {
+  await pb.collection("tasks").delete(id);
+}
