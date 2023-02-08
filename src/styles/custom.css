@@ -1,0 +1,19 @@
+main, header {
+  padding: 1rem;
+}
+
+button {
+  padding: 0.3rem;
+  font-weight: normal;
+}
+
+
+main:has(form.create) {
+  display: flex;
+  justify-content: center;
+}
+
+form.create {
+  text-align: center;
+  flex: 1;
+}

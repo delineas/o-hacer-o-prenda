@@ -1,4 +1,5 @@
 import '../styles/mvp.css'
+import "../styles/custom.css";
 
 import { SessionProvider } from "next-auth/react";
 

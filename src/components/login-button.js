@@ -5,15 +5,14 @@ export default function LoginButton() {
   if (session) {
     return (
       <>
-        Signed in as {session.user.email} <br />
-        <button onClick={() => signOut()}>Sign out</button>
+        {session.user.email} {" "}
+        <button onClick={() => signOut({callbackUrl: '/'})}>Cerrar sesión</button>
       </>
     );
   }
   return (
     <>
-      Not signed in <br />
-      <button onClick={() => signIn()}>Sign in</button>
+      <button onClick={() => signIn()}>Login</button>
     </>
   );
 }

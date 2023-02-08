@@ -11,32 +11,36 @@ export const authOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-
         try {
-          const authData = await pb.admins.authWithPassword(req.body.email, req.body.password);
+          const authData = await pb.admins.authWithPassword(
+            req.body.email,
+            req.body.password
+          );
           return {
-            email: authData.admin.email
-          }
-        }
-        catch(error) {
+            email: authData.admin.email,
+          };
+        } catch (error) {
           return null;
         }
-
       },
     }),
   ],
   secret: process.env.JWT_SECRET,
+  theme: {
+    colorScheme: "light",
+    brandColor: "#118bee",
+  },
   callbacks: {
-    async jwt({token}) {
-      if(pb.authStore?.token) {
+    async jwt({ token }) {
+      if (pb.authStore?.token) {
         token.accessToken = pb.authStore.token;
       }
-      if(pb.authStore.model) {
+      if (pb.authStore.model) {
         token.user = pb.authStore.model;
       }
       return token;
-    }
-  }
+    },
+  },
 };
 
 export default NextAuth(authOptions)

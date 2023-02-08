@@ -93,7 +93,7 @@ export default function () {
   }
 
   return (
-    <form>
+    <form className="create">
       <label htmlFor="topic">Tema de la lista</label>
       <input
         type="text"
