@@ -94,17 +94,22 @@ export default function () {
 
   return (
     <form className="create">
-      <label htmlFor="topic">Tema de la lista</label>
+      <label htmlFor="topic">Tema de la lista de la lista de tareas</label>
       <input
         type="text"
         name="topic"
         value={topic}
+        placeholder="Escribe aquí el tema..."
         onChange={(e) => setTopic(event.target.value)}
       />
 
       <br />
       {content == "" && (
-        <SubmitButton onClick={handleSubmit} isLoading={isLoading}>
+        <SubmitButton
+          onClick={handleSubmit}
+          isLoading={isLoading}
+          disabled={topic.length < 5}
+        >
           {isLoading ? "Esperando..." : "¡Genera!"}
         </SubmitButton>
       )}

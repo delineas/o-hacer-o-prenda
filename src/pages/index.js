@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Header from '../components/header';
 
 function Index() {
+
   return (
     <>
       <Head>
@@ -16,7 +17,7 @@ function Index() {
         </h2>
       </Header>
       <main>
-        <CreateForm></CreateForm>
+        
       </main>
     </>
   );

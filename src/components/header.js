@@ -14,6 +14,9 @@ export default function ({children, home}) {
             <Link href="/create">Crear</Link>
           </li>
           <li>
+            <Link href="/tasks">Lista</Link>
+          </li>
+          <li>
             <LoginButton></LoginButton>
           </li>
         </ul>

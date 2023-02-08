@@ -1,6 +1,6 @@
-export default function SubmitButton({ children, isLoading, onClick }) {
+export default function SubmitButton({ children, isLoading, onClick, disabled }) {
   return (
-    <button type="submit" onClick={onClick} disabled={isLoading}>
+    <button type="submit" onClick={onClick} disabled={isLoading || disabled}>
       {children}
     </button>
   );
